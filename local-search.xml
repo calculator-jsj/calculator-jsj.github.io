@@ -4,7 +4,34 @@
   
   
   <entry>
-    <title>南软软件安全期末复习</title>
+    <title>2025南软统计模型期末复习</title>
+    <link href="/2026/02/06/2024%E7%BB%9F%E8%AE%A1%E6%A8%A1%E5%9E%8B%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/"/>
+    <url>/2026/02/06/2024%E7%BB%9F%E8%AE%A1%E6%A8%A1%E5%9E%8B%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/</url>
+    
+    <content type="html"><![CDATA[<p>本文为2024统计模型期末试卷回忆版，既作为课程复习笔记，也希望通过系统梳理，加深对算法思想与应用场景的认识。</p><ul><li>其中，简答题8道＋计算题5道</li><li>2024版简答题新增了部分我认为会考的内容作为复习，所以有12道，实际只有8道</li><li>2025统计模型计算题新增了 <code>Γ函数</code> 作为考点，其他的题目大同小异。</li><li>回忆版仅供参考。</li></ul><h2 id="简答题"><a href="#简答题" class="headerlink" title="简答题"></a>简答题</h2><ul><li><strong>简述 EM 算法的基本思想、主要步骤，并说明其优缺点与应用场景。</strong></li><li><strong>何为聚类？简述 K-means 聚类算法的基本流程及其优缺点。</strong></li><li><strong>什么是层次聚类？写出两种常用的簇间距离计算方法及其变种。</strong></li><li><strong>简述分类问题中的：二分类、多分类、多标签分类与排序问题的区别及应用场景。</strong></li><li><strong>简述训练集、验证集、测试集在分类问题中的作用与区别。</strong></li><li><strong>简述决策树分类算法，并说明 C4.5 相比 ID3 的主要改进。</strong></li><li><strong>给出泊松分布的概率密度函数，描述参数k和的含义。</strong></li><li><strong>给出正态分布的概率密度函数，以及均值和方差。</strong></li><li><strong>写出四种常见概率分布（二项分布、Poisson、指数、正态），并说明各自应用场景。</strong></li><li><strong>什么是 N-Gram 模型？解释 Unigram、Bigram、Trigram，并说明其在语言建模中的作用。</strong></li><li><strong>给出NLP的典型任务，以及其特征应用。</strong></li><li><strong>什么是词项-文档矩阵，如何构造？</strong></li></ul><h2 id="计算题"><a href="#计算题" class="headerlink" title="计算题"></a>计算题</h2><ul><li><h3 id="K-means-聚类算法计算"><a href="#K-means-聚类算法计算" class="headerlink" title="K-means 聚类算法计算"></a><strong>K-means 聚类算法计算</strong></h3><blockquote><p>给定如下样本点：<br>A(1,1)，B(2,1)，C(5,4)，D(6,5)<br>初始聚类中心为 μ₁(1,1)，μ₂(5,4)。</p></blockquote><p>请完成 <strong>第一次 K-means 迭代</strong>：<br> ① 样本分配<br> ② 计算新的聚类中心</p><p><img src="/%5Cimg%5C%E7%BB%9F%E8%AE%A1%E6%A8%A1%E5%9E%8B%5Cimage-20260101212137596.png" alt="image-20260101212137596"></p></li><li><h3 id="正态分布极大似然估计"><a href="#正态分布极大似然估计" class="headerlink" title="正态分布极大似然估计"></a><strong>正态分布极大似然估计</strong></h3><blockquote><p>给定样本 x1,x2,…,xn来自正态分布 N(μ,σ2)</p></blockquote><p>① 写出似然函数<br>② 写出对数似然函数<br>③ 对参数求偏导，给出 μ 和 σ2 的极大似然估计值</p><p><img src="/%5Cimg%5C%E7%BB%9F%E8%AE%A1%E6%A8%A1%E5%9E%8B%5Cimage-20260101212150711.png" alt="image-20260101212150711"></p></li><li><h3 id="朴素贝叶斯分类计算"><a href="#朴素贝叶斯分类计算" class="headerlink" title="朴素贝叶斯分类计算"></a><strong>朴素贝叶斯分类计算</strong></h3><blockquote><p>已知某分类问题中先验概率和条件概率如下：</p><p>P(C1)&#x3D;0.6,  P(C2)&#x3D;0.4<br>P(x∣C1)&#x3D;0.2,  P(x∣C2)&#x3D;0.5</p></blockquote><p>使用<strong>全概率公式</strong>计算后验概率 P(C1∣x) 与 P(C2∣x) ，并给出分类结果。</p><p><img src="/%5Cimg%5C%E7%BB%9F%E8%AE%A1%E6%A8%A1%E5%9E%8B%5Cimage-20260101212204905.png" alt="image-20260101212204905"></p></li><li><h3 id="Bigram-语言模型计算"><a href="#Bigram-语言模型计算" class="headerlink" title="Bigram 语言模型计算"></a><strong>Bigram 语言模型计算</strong></h3><blockquote><p>语料为：<br><code>I love machine learning</code></p></blockquote><p>① 写出该句子的 Bigram 表示<br>② 计算句子概率</p><p><img src="/%5Cimg%5C%E7%BB%9F%E8%AE%A1%E6%A8%A1%E5%9E%8B%5Cimage-20260101212216578.png" alt="image-20260101212216578"></p></li><li><h3 id="词袋模型计算"><a href="#词袋模型计算" class="headerlink" title="词袋模型计算"></a><strong>词袋模型计算</strong></h3><blockquote><p>给定语料库：<br>文档1：<code>I love NLP</code><br>文档2：<code>I love machine learning</code></p></blockquote><p>① 构建词汇表<br>② 构造对应的词项–文档矩阵</p><p><img src="/%5Cimg%5C%E7%BB%9F%E8%AE%A1%E6%A8%A1%E5%9E%8B%5Cimage-20260101212254957.png" alt="image-20260101212254957"></p></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>期末</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>复习</tag>
+      
+      <tag>统计模型</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>2025南软软件安全期末复习</title>
     <link href="/2026/02/06/%E5%8D%97%E8%BD%AF%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/"/>
     <url>/2026/02/06/%E5%8D%97%E8%BD%AF%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/</url>
     

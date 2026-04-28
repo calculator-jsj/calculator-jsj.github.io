@@ -1,33 +1,33 @@
 <!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>万字详解Kafka | Ace's Blog</title><meta name="author" content="Ace"><meta name="copyright" content="Ace"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="万字详解Kafka，快速上手 适合读者：已经能写一个普通 Spring Boot 后端项目，但对 Kafka、消息中间件、微服务事件驱动架构还不熟。 阅读目标：看完后能看懂公司代码里的 KafkaTemplate、@KafkaListener、group-id、topic、partition、offset、重试、死信队列、幂等等常见设计，不至于接手代码时一脸懵。 参考资料主要来自官方文档：  Ap">
 <meta property="og:type" content="article">
 <meta property="og:title" content="万字详解Kafka">
-<meta property="og:url" content="https://calculator-jsj.github.io/2026/04/28/%E4%B8%87%E5%AD%97%E8%AF%A6%E8%A7%A3Kafka/index.html">
+<meta property="og:url" content="https://jun.watch/2026/04/28/%E4%B8%87%E5%AD%97%E8%AF%A6%E8%A7%A3Kafka/index.html">
 <meta property="og:site_name" content="Ace&#39;s Blog">
 <meta property="og:description" content="万字详解Kafka，快速上手 适合读者：已经能写一个普通 Spring Boot 后端项目，但对 Kafka、消息中间件、微服务事件驱动架构还不熟。 阅读目标：看完后能看懂公司代码里的 KafkaTemplate、@KafkaListener、group-id、topic、partition、offset、重试、死信队列、幂等等常见设计，不至于接手代码时一脸懵。 参考资料主要来自官方文档：  Ap">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://calculator-jsj.github.io/img/blog-cover-003.png">
+<meta property="og:image" content="https://jun.watch/img/blog-cover-003.png">
 <meta property="article:published_time" content="2026-04-28T09:01:19.000Z">
 <meta property="article:modified_time" content="2026-04-28T09:02:30.988Z">
 <meta property="article:author" content="Ace">
 <meta property="article:tag" content="Kafka">
 <meta property="article:tag" content="消息中间件">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://calculator-jsj.github.io/img/blog-cover-003.png"><script type="application/ld+json">{
+<meta name="twitter:image" content="https://jun.watch/img/blog-cover-003.png"><script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": "万字详解Kafka",
-  "url": "https://calculator-jsj.github.io/2026/04/28/%E4%B8%87%E5%AD%97%E8%AF%A6%E8%A7%A3Kafka/",
-  "image": "https://calculator-jsj.github.io/img/blog-cover-003.png",
+  "url": "https://jun.watch/2026/04/28/%E4%B8%87%E5%AD%97%E8%AF%A6%E8%A7%A3Kafka/",
+  "image": "https://jun.watch/img/blog-cover-003.png",
   "datePublished": "2026-04-28T09:01:19.000Z",
   "dateModified": "2026-04-28T09:02:30.988Z",
   "author": [
     {
       "@type": "Person",
       "name": "Ace",
-      "url": "https://calculator-jsj.github.io"
+      "url": "https://jun.watch"
     }
   ]
-}</script><link rel="shortcut icon" href="/img/blog.png"><link rel="canonical" href="https://calculator-jsj.github.io/2026/04/28/%E4%B8%87%E5%AD%97%E8%AF%A6%E8%A7%A3Kafka/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+}</script><link rel="shortcut icon" href="/img/blog.png"><link rel="canonical" href="https://jun.watch/2026/04/28/%E4%B8%87%E5%AD%97%E8%AF%A6%E8%A7%A3Kafka/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
     (() => {
       
     const saveToLocal = {

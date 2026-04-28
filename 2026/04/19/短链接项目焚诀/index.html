@@ -1,11 +1,11 @@
 <!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Saas短链接设计与实现 | Ace's Blog</title><meta name="author" content="Ace"><meta name="copyright" content="Ace"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="项目介绍为什么做这个项目？学习还是交付商业？做这个项目主要有两个出发点 从业务价值出发短链接在实际场景中是一个非常典型的高并发、高访问的应用，比如：  营销推广（短信、广告投放） 用户增长（裂变分享） 数据统计（点击来源分析）  这些场景有几个特点：读多写少、访问集中、流量突发性强 所以我希望通过这个项目，把：  缓存设计（Redis） 高并发控制（限流、削峰） 分库分表（ShardingSphe">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Saas短链接设计与实现">
-<meta property="og:url" content="https://calculator-jsj.github.io/2026/04/19/%E7%9F%AD%E9%93%BE%E6%8E%A5%E9%A1%B9%E7%9B%AE%E7%84%9A%E8%AF%80/index.html">
+<meta property="og:url" content="https://jun.watch/2026/04/19/%E7%9F%AD%E9%93%BE%E6%8E%A5%E9%A1%B9%E7%9B%AE%E7%84%9A%E8%AF%80/index.html">
 <meta property="og:site_name" content="Ace&#39;s Blog">
 <meta property="og:description" content="项目介绍为什么做这个项目？学习还是交付商业？做这个项目主要有两个出发点 从业务价值出发短链接在实际场景中是一个非常典型的高并发、高访问的应用，比如：  营销推广（短信、广告投放） 用户增长（裂变分享） 数据统计（点击来源分析）  这些场景有几个特点：读多写少、访问集中、流量突发性强 所以我希望通过这个项目，把：  缓存设计（Redis） 高并发控制（限流、削峰） 分库分表（ShardingSphe">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://calculator-jsj.github.io/img/blog-cover-shortLink.png">
+<meta property="og:image" content="https://jun.watch/img/blog-cover-shortLink.png">
 <meta property="article:published_time" content="2026-04-19T04:08:49.000Z">
 <meta property="article:modified_time" content="2026-04-28T07:58:20.786Z">
 <meta property="article:author" content="Ace">
@@ -13,22 +13,22 @@
 <meta property="article:tag" content="消息队列">
 <meta property="article:tag" content="redis">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://calculator-jsj.github.io/img/blog-cover-shortLink.png"><script type="application/ld+json">{
+<meta name="twitter:image" content="https://jun.watch/img/blog-cover-shortLink.png"><script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": "Saas短链接设计与实现",
-  "url": "https://calculator-jsj.github.io/2026/04/19/%E7%9F%AD%E9%93%BE%E6%8E%A5%E9%A1%B9%E7%9B%AE%E7%84%9A%E8%AF%80/",
-  "image": "https://calculator-jsj.github.io/img/blog-cover-shortLink.png",
+  "url": "https://jun.watch/2026/04/19/%E7%9F%AD%E9%93%BE%E6%8E%A5%E9%A1%B9%E7%9B%AE%E7%84%9A%E8%AF%80/",
+  "image": "https://jun.watch/img/blog-cover-shortLink.png",
   "datePublished": "2026-04-19T04:08:49.000Z",
   "dateModified": "2026-04-28T07:58:20.786Z",
   "author": [
     {
       "@type": "Person",
       "name": "Ace",
-      "url": "https://calculator-jsj.github.io"
+      "url": "https://jun.watch"
     }
   ]
-}</script><link rel="shortcut icon" href="/img/blog.png"><link rel="canonical" href="https://calculator-jsj.github.io/2026/04/19/%E7%9F%AD%E9%93%BE%E6%8E%A5%E9%A1%B9%E7%9B%AE%E7%84%9A%E8%AF%80/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+}</script><link rel="shortcut icon" href="/img/blog.png"><link rel="canonical" href="https://jun.watch/2026/04/19/%E7%9F%AD%E9%93%BE%E6%8E%A5%E9%A1%B9%E7%9B%AE%E7%84%9A%E8%AF%80/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
     (() => {
       
     const saveToLocal = {

@@ -1,0 +1,332 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>2025南软高级软件设计期末复习 | Ace's Blog</title><meta name="author" content="Ace"><meta name="copyright" content="Ace"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="高级软件设计简答题汇总 设计模式和类库有什么不同  定义与目的  解决问题，重复使用的框架，经过验证的最佳实践，解决设计问题 封装特定功能的类和接口的集合，提供具体实现   抽象级别  更高级别抽象，方法论，组织代码和模块 具体实现，提供可直接使用的代码   通用性和使用范围  通用性更高，适合多种语言和项目，举例 类库与特定编程语言绑定，Java Spring框架   重用程度  重用思想和方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025南软高级软件设计期末复习">
+<meta property="og:url" content="https://calculator-jsj.github.io/2026/02/10/%E9%AB%98%E7%BA%A7%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Ace&#39;s Blog">
+<meta property="og:description" content="高级软件设计简答题汇总 设计模式和类库有什么不同  定义与目的  解决问题，重复使用的框架，经过验证的最佳实践，解决设计问题 封装特定功能的类和接口的集合，提供具体实现   抽象级别  更高级别抽象，方法论，组织代码和模块 具体实现，提供可直接使用的代码   通用性和使用范围  通用性更高，适合多种语言和项目，举例 类库与特定编程语言绑定，Java Spring框架   重用程度  重用思想和方法">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://calculator-jsj.github.io/img/blog-cover-1770733677174.png">
+<meta property="article:published_time" content="2026-02-10T10:05:15.000Z">
+<meta property="article:modified_time" content="2026-04-28T07:58:20.786Z">
+<meta property="article:author" content="Ace">
+<meta property="article:tag" content="复习">
+<meta property="article:tag" content="高级软件设计">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://calculator-jsj.github.io/img/blog-cover-1770733677174.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "2025南软高级软件设计期末复习",
+  "url": "https://calculator-jsj.github.io/2026/02/10/%E9%AB%98%E7%BA%A7%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/",
+  "image": "https://calculator-jsj.github.io/img/blog-cover-1770733677174.png",
+  "datePublished": "2026-02-10T10:05:15.000Z",
+  "dateModified": "2026-04-28T07:58:20.786Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Ace",
+      "url": "https://calculator-jsj.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/blog.png"><link rel="canonical" href="https://calculator-jsj.github.io/2026/02/10/%E9%AB%98%E7%BA%A7%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":true,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '2025南软高级软件设计期末复习',
+  isHighlightShrink: undefined,
+  isToc: false,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-color: #f7f9fe;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/my-avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/blog-cover-1770733677174.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Ace's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">2025南软高级软件设计期末复习</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">2025南软高级软件设计期末复习</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-02-10T10:05:15.000Z" title="发表于 2026-02-10 18:05:15">2026-02-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-04-28T07:58:20.786Z" title="更新于 2026-04-28 15:58:20">2026-04-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%9F%E6%9C%AB/">期末</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>高级软件设计简答题汇总</p>
+<p><strong>设计模式和类库有什么不同</strong></p>
+<ul>
+<li><p>定义与目的</p>
+<blockquote>
+<p>解决问题，重复使用的框架，经过验证的最佳实践，解决设计问题</p>
+<p>封装特定功能的类和接口的集合，提供具体实现</p>
+</blockquote>
+</li>
+<li><p>抽象级别</p>
+<blockquote>
+<p>更高级别抽象，方法论，组织代码和模块</p>
+<p>具体实现，提供可直接使用的代码</p>
+</blockquote>
+</li>
+<li><p>通用性和使用范围</p>
+<blockquote>
+<p>通用性更高，适合多种语言和项目，举例</p>
+<p>类库与特定编程语言绑定，Java Spring框架</p>
+</blockquote>
+</li>
+<li><p>重用程度</p>
+<blockquote>
+<p>重用思想和方法，而非代码</p>
+<p>重用代码</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>工厂设计模式的三个OO原则</strong></p>
+<ul>
+<li><p>单一职责原则</p>
+<blockquote>
+<p>一个类应当只有一个引起变化的原因。创建对象的职责被分配给专门的工厂，可以将创建与使用分离。</p>
+<p>工厂只关心对象的创建，而不关心对象的具体使用。</p>
+</blockquote>
+</li>
+<li><p>依赖倒置原则</p>
+<blockquote>
+<p>高层模块不应当依赖于底层模块，都应该依赖于抽象。</p>
+<p>抽象不应该依赖于细节，细节应该依赖于抽象。</p>
+<p>客户端代码依赖于抽象的工厂，而不依赖于具体的工厂实现类。</p>
+</blockquote>
+</li>
+<li><p>开闭原则</p>
+<blockquote>
+<p>软件实体应当对扩展开放，对修改封闭。工厂方法模式允许系统不修改代码，引入新类型的对象，可以添加新的工厂扩展系统。</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>什么是设计模式，什么是design pattern catalog？</strong></p>
+<ul>
+<li><p>在软件工程中，针对特定问题的典型解决方案的一种标准化描述。最佳实践，解决问题，不是代码，而是指导方案</p>
+<blockquote>
+<p>包含模式名称、问题、解决方案、效果</p>
+<p>分三大类：创建型、结构型、行为型</p>
+</blockquote>
+</li>
+<li><p>Design pattern catalog 是指收集多种设计模式的目录。包含详细描述、示例、优缺点。</p>
+</li>
+</ul>
+<p><strong>为什么“依赖倒置原则”被认为是大多数设计模式的核心？</strong></p>
+<ul>
+<li>先介绍依赖倒置原则，高层不应依赖低层，应该依赖于抽象。抽象不应该依赖于细节，细节应该依赖于抽象。</li>
+<li>降低模块之间的耦合。</li>
+</ul>
+<p><strong>比较策略模式和状态模式</strong></p>
+<ul>
+<li><p>都是行为型设计模式，然后从目的、应用场景、实现、优缺点来讲</p>
+<blockquote>
+<p><strong>目的</strong>：策略模式允许运行时选择算法或行为，状态模式允许对象改变内部状态来改变行为</p>
+<p><strong>应用场景</strong>：</p>
+<p>策略模式</p>
+<ul>
+<li>用于多种类似算法或行为的互换使用（不同排序算法），运行时可切换</li>
+<li>避免条件语句，去除条件语句决定执行哪个算法</li>
+<li>封装算法的变化</li>
+</ul>
+<p>状态模式</p>
+<ul>
+<li>对象行为依赖于其状态，行为随着状态改变而改变</li>
+<li>对象有复杂的状态逻辑，状态转换明确</li>
+<li>避免对象行为的膨胀</li>
+</ul>
+<p><strong>实现</strong>：</p>
+<ul>
+<li>策略模式定义策略接口，创建具体策略类，上下文使用策略接口作为字段，调用具体策略实现</li>
+<li>状态模式将每种状态封装成独立的类，将状态转换的逻辑放在状态类内部实现</li>
+</ul>
+<p><strong>优缺点</strong>：</p>
+<ul>
+<li>策略模式提高复用性，独立于客户端变化，但需了解策略之间差异，增加了复杂性</li>
+<li>状态模式将逻辑分散到状态类中，易于扩展状态，但引入很多状态类，增加系统复杂性</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p><strong>比较适配器、外观和装饰器设计模式的意图和模式</strong></p>
+<ul>
+<li>适配器模式将一个类的接口转换成期望的另一个类的接口，让不兼容的类一起工作（整合第三方库）</li>
+<li>外观模式提供统一的接口，访问子系统的一群接口，使子系统更易使用（简化客户端与复杂系统的交互）</li>
+<li>装饰器模式动态地给对象添加额外的职责而不改变对象接口，比生成子类灵活（动态添加功能）</li>
+</ul>
+<p><strong>比较适配器模式、装饰器模式和代理模式的目的与结构差异。</strong></p>
+<ul>
+<li><p>都是结构型设计模式，然后写目的和结构</p>
+<blockquote>
+<p>适配器模式的目的是解决接口不兼容问题，通过包装已有对象将其接口转换为客户端期望的接口</p>
+<p>装饰器模式的目的是在不修改原对象的情况下动态地为对象增加功能，其结构呈现<strong>链式包装</strong></p>
+<p>代理模式的目的是控制对对象的访问，在客户端与真实对象之间提供一个代理层。</p>
+<p>三者在结构上都通过<strong>组合方式</strong>包装对象，</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>比较透明组合和安全组合。</strong></p>
+<ul>
+<li><p>讲定义和优缺点</p>
+<blockquote>
+<p><strong>定义</strong>：透明组合的Component中包含管理子部件的操作，对于Leaf节点和Composite节点都可见。而安全组合管理子部件的操作不再Component接口中定义，而是只在Composite节点类中实现。</p>
+<p><strong>优缺点</strong>：</p>
+<p>透明组合客户端通义对待叶节点和容器节点，不必关心操作的是哪个。但牺牲了单一职责原则，叶节点包含多余的操作可能引起运行时错误。</p>
+<p>安全组合叶节点不提供无关的操作，遵循单一职责原则，更加安全。但牺牲了透明性，处理节点要进行类型判断，增加了代码的复杂性。</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>比较工厂方法模式与抽象工厂模式的适用场景。</strong></p>
+<ul>
+<li>工厂方法模式适用于系统只涉及一种产品类型，子类决定创建哪种产品，产品之间没有强关联（不同类型的解析器）</li>
+<li>抽象工厂模式适用于创建一组相关或相互依赖产品族的产品族的场景，强调产品一致性（不同风格的UI组件）</li>
+</ul>
+<p><strong>比较组合模式与装饰模式在结构上的异同。</strong></p>
+<ul>
+<li>相同点：都使用抽象组件（Component），都通过递归方式组合对象，而不是继承。</li>
+<li>不同点：Composite中包含多个Component，而Decorator中只包装一个Component。组合模式关注层次结构，形成树结构，而装饰模式关注功能扩展，形成链式结构。</li>
+</ul>
+<p><strong>说明装饰者模式如何体现开闭原则和合成复用原则。</strong></p>
+<ul>
+<li>先扯两个概念。</li>
+<li>开闭原则：装饰者模式通过引入装饰类在不修改原有类的情况下动态扩展对象功能，完美体现了开闭原则。</li>
+<li>合成复用原则：通过对象组合实现功能扩展，避免了继承带来的类爆炸问题，符合合成复用原则。</li>
+</ul>
+<p><strong>说明观察者模式如何体现依赖倒置原则与迪米特法则。</strong></p>
+<ul>
+<li>先扯概念</li>
+<li>主题和观察者通过抽象接口解耦，高层模块 Subject 不再依赖具体实现，体现依赖倒置原则。</li>
+<li>主题对象只与观察者接口通信，不与观察者的具体实现发生依赖，符合迪米特法则。</li>
+</ul>
+<p><strong>说明模板方法模式如何体现开闭原则。</strong></p>
+<ul>
+<li>开闭原则定义</li>
+<li>模板方法模式通过固定算法骨架、延迟步骤实现，使系统在不修改算法结构的前提下即可扩展新行为，从而体现了开闭原则。</li>
+</ul>
+<p><strong>说明组合模式如何体现里氏替换原则。</strong></p>
+<ul>
+<li>组合模式通过为叶子对象和组合对象定义统一的抽象组件接口，使客户端对单个对象和组合对象的使用具有一致性，从而保证了任何组件子类对象都可以替换抽象组件出现的位置而不影响程序行为，体现了里氏替换原则。</li>
+</ul>
+<p><strong>观察者模式中的update方法是否必须？请说明理由。</strong></p>
+<ul>
+<li>观察者模式中的update方法通常是必须的</li>
+<li>先讲角色：观察者（Observer）和被观察者（Subject）。被观察者维护一个观察者列表，并在状态变化时通知它们。观察者需要有一个方法来接收并响应这些通知，这就是 update 方法的作用。通过 update 方法，观察者可以得知被观察者的状态变化并作出相应的反应。</li>
+<li>再讲通知方式：当被观察者的状态改变时，它会调用每个注册观察者的 update 方法，以此来通知观察者其状态已改变。</li>
+<li>灵活性与一致性：在某些实现中，update 方法可以接收参数以提供关于状态变化的更多信息。</li>
+<li>update概念上必需，但具体形式并非固定，可以通过回调、事件机制等方式实现通知。</li>
+</ul>
+<p><strong>在什么情况下应当使用策略模式？举例说明。</strong></p>
+<ul>
+<li>用于多种类似算法或行为的互换使用（不同排序算法），运行时可切换</li>
+<li>避免条件语句，去除条件语句决定执行哪个算法</li>
+<li>封装算法的变化</li>
+</ul>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%A4%8D%E4%B9%A0/">复习</a><a class="post-meta__tags" href="/tags/%E9%AB%98%E7%BA%A7%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/">高级软件设计</a></div><div class="post-share"><div class="social-share" data-image="/img/blog-cover-1770733677174.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/02/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%85%AB%E8%82%A1/" title="计算机网络八股"><img class="cover" src="/img/blog-cover-001.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">计算机网络八股</div></div><div class="info-2"><div class="info-item-1">本文参考并整理自 JavaGuide，对计算机网络中常见的面试高频问题进行了内容精简与结构化梳理。在保证核心概念准确性的前提下，尽量压缩表述、突出关键点，并结合个人理解做了适当的记忆扩展，便于快速复习和长期理解。 网络分层模型OSI 七层模型物（比特传输）、链（帧编码、差错控制）、网（路由和寻址）、输（进程通信）、会、示（编码、加密）、用 TCP&#x2F;IP 四层模型接（链路和物理）、网、输、用（会话、表示、应用） 网络分层的原因 各层相互独立（无需关注其他层） 提高灵活性和可替换性（多答特性） 大问题化...</div></div></div></a><a class="pagination-related" href="/2026/02/06/2024%E7%BB%9F%E8%AE%A1%E6%A8%A1%E5%9E%8B%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/" title="2025南软统计模型期末复习"><img class="cover" src="/img/blog-cover-1770376339122.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">2025南软统计模型期末复习</div></div><div class="info-2"><div class="info-item-1">本文为2024统计模型期末试卷回忆版，既作为课程复习笔记，也希望通过系统梳理，加深对算法思想与应用场景的认识。  其中，简答题8道＋计算题5道 2024版简答题新增了部分我认为会考的内容作为复习，所以有12道，实际只有8道 2025统计模型计算题新增了 Γ函数 作为考点，其他的题目大同小异。 回忆版仅供参考。  简答题 简述 EM 算法的基本思想、主要步骤，并说明其优缺点与应用场景。 何为聚类？简述 K-means 聚类算法的基本流程及其优缺点。 什么是层次聚类？写出两种常用的簇间距离计算方法及其变种。 简述...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/02/06/%E5%8D%97%E8%BD%AF%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/" title="2025南软软件安全期末复习"><img class="cover" src="/img/blog-cover-1770373154786.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-06</div><div class="info-item-2">2025南软软件安全期末复习</div></div><div class="info-2"><div class="info-item-1">本文是对《软件安全》课程期末内容的系统性复习与梳理，围绕软件漏洞、恶意代码、安全开发生命周期（SDL）、安全需求与设计、软件版权与法律等核心知识点，对教材中的重点概念、常见考点和易混淆内容进行了整理与归纳。 ​2025冷门考点：威胁建模、 Windows安全漏洞保护的基本技术及其存在的问题 第一章 什么是零日(0day)漏洞?什么是零日(0day)攻击?（2024）  未公开披露的软件漏洞，没有给软件厂商时间去打补丁或给出解决方案。 攻击者利用零日漏洞开发攻击工具攻击   为什么说面对当前的全球网络空间安全威...</div></div></div></a><a class="pagination-related" href="/2026/02/06/2024%E7%BB%9F%E8%AE%A1%E6%A8%A1%E5%9E%8B%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/" title="2025南软统计模型期末复习"><img class="cover" src="/img/blog-cover-1770376339122.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-06</div><div class="info-item-2">2025南软统计模型期末复习</div></div><div class="info-2"><div class="info-item-1">本文为2024统计模型期末试卷回忆版，既作为课程复习笔记，也希望通过系统梳理，加深对算法思想与应用场景的认识。  其中，简答题8道＋计算题5道 2024版简答题新增了部分我认为会考的内容作为复习，所以有12道，实际只有8道 2025统计模型计算题新增了 Γ函数 作为考点，其他的题目大同小异。 回忆版仅供参考。  简答题 简述 EM 算法的基本思想、主要步骤，并说明其优缺点与应用场景。 何为聚类？简述 K-means 聚类算法的基本流程及其优缺点。 什么是层次聚类？写出两种常用的簇间距离计算方法及其变种。 简述...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/my-avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Ace</div><div class="author-info-description">在代码、系统与想法之间留下笔记</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/calculator-jsj" target="_blank" title="GitHub"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="https://qq.com" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #000000;"></i></a><a class="social-icon" href="https://weixin.com" target="_blank" title="WeChat"><i class="fab fa-weixin" style="color: #000000;"></i></a><a class="social-icon" href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram" style="color: #000000;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到 Ace's Blog。</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/04/28/%E4%B8%87%E5%AD%97%E8%AF%A6%E8%A7%A3Kafka/" title="万字详解Kafka"><img src="/img/blog-cover-003.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="万字详解Kafka"/></a><div class="content"><a class="title" href="/2026/04/28/%E4%B8%87%E5%AD%97%E8%AF%A6%E8%A7%A3Kafka/" title="万字详解Kafka">万字详解Kafka</a><time datetime="2026-04-28T09:01:19.000Z" title="发表于 2026-04-28 17:01:19">2026-04-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/04/19/RagentHub%E9%97%AE%E7%AD%94/" title="RagentHub问答"><img src="/img/blog-cover-RagentHub.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RagentHub问答"/></a><div class="content"><a class="title" href="/2026/04/19/RagentHub%E9%97%AE%E7%AD%94/" title="RagentHub问答">RagentHub问答</a><time datetime="2026-04-19T04:32:06.000Z" title="发表于 2026-04-19 12:32:06">2026-04-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/04/19/%E7%9F%AD%E9%93%BE%E6%8E%A5%E9%A1%B9%E7%9B%AE%E7%84%9A%E8%AF%80/" title="Saas短链接设计与实现"><img src="/img/blog-cover-shortLink.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Saas短链接设计与实现"/></a><div class="content"><a class="title" href="/2026/04/19/%E7%9F%AD%E9%93%BE%E6%8E%A5%E9%A1%B9%E7%9B%AE%E7%84%9A%E8%AF%80/" title="Saas短链接设计与实现">Saas短链接设计与实现</a><time datetime="2026-04-19T04:08:49.000Z" title="发表于 2026-04-19 12:08:49">2026-04-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%85%AB%E8%82%A1/" title="计算机网络八股"><img src="/img/blog-cover-001.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机网络八股"/></a><div class="content"><a class="title" href="/2026/02/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%85%AB%E8%82%A1/" title="计算机网络八股">计算机网络八股</a><time datetime="2026-02-10T13:04:15.000Z" title="发表于 2026-02-10 21:04:15">2026-02-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/10/%E9%AB%98%E7%BA%A7%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/" title="2025南软高级软件设计期末复习"><img src="/img/blog-cover-1770733677174.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2025南软高级软件设计期末复习"/></a><div class="content"><a class="title" href="/2026/02/10/%E9%AB%98%E7%BA%A7%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/" title="2025南软高级软件设计期末复习">2025南软高级软件设计期末复习</a><time datetime="2026-02-10T10:05:15.000Z" title="发表于 2026-02-10 18:05:15">2026-02-10</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/blog-cover-1770733677174.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By Ace</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

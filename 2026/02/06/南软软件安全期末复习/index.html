@@ -1,0 +1,606 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>2025南软软件安全期末复习 | Ace's Blog</title><meta name="author" content="Ace"><meta name="copyright" content="Ace"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="本文是对《软件安全》课程期末内容的系统性复习与梳理，围绕软件漏洞、恶意代码、安全开发生命周期（SDL）、安全需求与设计、软件版权与法律等核心知识点，对教材中的重点概念、常见考点和易混淆内容进行了整理与归纳。 ​2025冷门考点：威胁建模、 Windows安全漏洞保护的基本技术及其存在的问题 第一章 什么是零日(0day)漏洞?什么是零日(0day)攻击?（2024）  未公开披露的软件漏洞，没有给">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025南软软件安全期末复习">
+<meta property="og:url" content="https://calculator-jsj.github.io/2026/02/06/%E5%8D%97%E8%BD%AF%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Ace&#39;s Blog">
+<meta property="og:description" content="本文是对《软件安全》课程期末内容的系统性复习与梳理，围绕软件漏洞、恶意代码、安全开发生命周期（SDL）、安全需求与设计、软件版权与法律等核心知识点，对教材中的重点概念、常见考点和易混淆内容进行了整理与归纳。 ​2025冷门考点：威胁建模、 Windows安全漏洞保护的基本技术及其存在的问题 第一章 什么是零日(0day)漏洞?什么是零日(0day)攻击?（2024）  未公开披露的软件漏洞，没有给">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://calculator-jsj.github.io/img/blog-cover-1770373154786.png">
+<meta property="article:published_time" content="2026-02-06T10:05:15.000Z">
+<meta property="article:modified_time" content="2026-04-28T07:58:20.783Z">
+<meta property="article:author" content="Ace">
+<meta property="article:tag" content="复习">
+<meta property="article:tag" content="软件安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://calculator-jsj.github.io/img/blog-cover-1770373154786.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "2025南软软件安全期末复习",
+  "url": "https://calculator-jsj.github.io/2026/02/06/%E5%8D%97%E8%BD%AF%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/",
+  "image": "https://calculator-jsj.github.io/img/blog-cover-1770373154786.png",
+  "datePublished": "2026-02-06T10:05:15.000Z",
+  "dateModified": "2026-04-28T07:58:20.783Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Ace",
+      "url": "https://calculator-jsj.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/blog.png"><link rel="canonical" href="https://calculator-jsj.github.io/2026/02/06/%E5%8D%97%E8%BD%AF%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":true,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '2025南软软件安全期末复习',
+  isHighlightShrink: undefined,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-color: #f7f9fe;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/my-avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/blog-cover-1770373154786.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Ace's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">2025南软软件安全期末复习</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">2025南软软件安全期末复习</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-02-06T10:05:15.000Z" title="发表于 2026-02-06 18:05:15">2026-02-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-04-28T07:58:20.783Z" title="更新于 2026-04-28 15:58:20">2026-04-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%9F%E6%9C%AB/">期末</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>本文是对《软件安全》课程期末内容的系统性复习与梳理，围绕软件漏洞、恶意代码、安全开发生命周期（SDL）、安全需求与设计、软件版权与法律等核心知识点，对教材中的重点概念、常见考点和易混淆内容进行了整理与归纳。</p>
+<p>​2025冷门考点：威胁建模、 Windows安全漏洞保护的基本技术及其存在的问题</p>
+<h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><ul>
+<li><p><strong>什么是零日(0day)漏洞?什么是零日(0day)攻击?</strong>（2024）</p>
+<blockquote>
+<p>未公开披露的软件漏洞，没有给软件厂商时间去打补丁或给出解决方案。</p>
+<p>攻击者利用零日漏洞开发攻击工具攻击</p>
+</blockquote>
+</li>
+<li><p>为什么说面对当前的全球网络空间安全威胁，必须对软件安全给予强烈关注?</p>
+<blockquote>
+<p>背景：软件无处不在</p>
+<p>问题：漏洞普遍存在</p>
+<p>结论：重视软件安全</p>
+</blockquote>
+</li>
+<li><p>当前，黑客为了能够有效达到窃取数据、破坏系统的目的，常常通过挖掘或是购买零日漏洞，开发针对零日漏洞的攻击工具，零日漏洞威胁实际上反映了软件系统存在的一个什么问题?</p>
+<blockquote>
+<p>先介绍零日漏洞</p>
+<p>系统的脆弱性，漏洞的隐秘性，修复的滞后性</p>
+</blockquote>
+</li>
+<li><p>根据本书的介绍，软件安全威胁可以分为哪几类?</p>
+<blockquote>
+<p>软件漏洞、恶意代码、软件侵权</p>
+</blockquote>
+</li>
+<li><p>试谈谈对软件漏洞的认识，举出软件漏洞造成危害的事件例子。</p>
+<blockquote>
+<p>软件生命周期与安全相关的设计错误、编码缺陷和运行故障</p>
+<p>举例两方面：</p>
+<p>软件漏洞在运行期间造成错误、崩溃、死机：操作系统蓝屏、内存泄漏崩溃</p>
+<p>软件漏洞被黑客利用攻击：数据库获取明文口令、缓冲区溢出攻击获得远程权限</p>
+</blockquote>
+</li>
+<li><p>什么是恶意代码?除了传统的计算机病毒,还有哪些恶意代码类型?</p>
+<blockquote>
+<p>未授权，搞破坏</p>
+<p>蠕虫、特洛伊木马、后门、勒索软件…</p>
+</blockquote>
+</li>
+<li><p>针对软件的版权，有哪些侵权行为?</p>
+<blockquote>
+<p>未经许可，发表，登记，修改，翻译</p>
+<p>复制、部分复制</p>
+<p>合作软件独立发表</p>
+<p>向公众发行、出租、传播</p>
+<p>转让他人著作权</p>
+</blockquote>
+</li>
+<li><p>谈谈对软件安全概念的理解。</p>
+<blockquote>
+<p>提供系统方法标识、追踪危害性软件，缓解和控制</p>
+<p>三大属性CIA：保密性、完整性、可用性</p>
+<p>其他属性：可认证，审计..</p>
+</blockquote>
+</li>
+<li><p>简述软件和软件工程的概念。</p>
+<blockquote>
+<p>计算机程序、数据和相关文档</p>
+<p>工程方法开发维护软件，结合好技术，高效开发，是技术和管理结合的工程学科</p>
+</blockquote>
+</li>
+<li><p>对照一般软件工程的概念，软件安全工程主要增添了哪些任务</p>
+<blockquote>
+<p>安全代码、安全环境、安全测试、网络安全、安全维护、安全标准、安全审计</p>
+</blockquote>
+</li>
+<li><p>谈谈软件安全与软件危机、软件质量和软件质量保证、软件保障、软件可靠性、应用软件系统安全、可信软件和软件定义安全等概念的区别和联系。</p>
+<blockquote>
+<p>给了</p>
+</blockquote>
+</li>
+<li><p>确保软件安全的基本思路是什么?软件安全涉及的技术主要有哪些方面?</p>
+<blockquote>
+<p>挖掘安全漏洞，分析给出修复</p>
+<p>事先分析可能发生的原因，开发中规避</p>
+<p>软件安全属性认知、信息系统安全工程、软件安全开发（背不出来也给了）</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h2><ul>
+<li><p><strong>试述软件漏洞的概念，谈谈软件漏洞与软件错误、软件缺陷、软件 Bug 的区别与联系。</strong>（2024）</p>
+<blockquote>
+<p>讲讲软件漏洞定义（同上）</p>
+<p>错误存在软件开发生命周期中（需求、设计、编码错误一堆错误），缺陷&#x2F;bug存在软件产品中（静态）</p>
+</blockquote>
+</li>
+<li><p>为什么说安全缺陷或者说Bug是一个需要考虑具体环境、具体对象的概念?</p>
+<blockquote>
+<p>举例Https</p>
+<p>讲讲安全性需求是否需要加入考量，然后说具体问题具体分析</p>
+</blockquote>
+</li>
+<li><p>试分析软件漏洞的成因。</p>
+<blockquote>
+<p>看到成因，刨根问底</p>
+<p>系统结构、软件大型化复杂化、使用场景、缺乏重视</p>
+</blockquote>
+</li>
+<li><p>软件漏洞如何分类分级管理?</p>
+<blockquote>
+<p>成因类：</p>
+<p>利用位置类：</p>
+<p>威胁类型类：</p>
+<p>严重级</p>
+<p>漏洞评分系统级</p>
+</blockquote>
+</li>
+<li><p>软件漏洞买卖合法吗?软件漏洞应当如何管控?</p>
+<blockquote>
+<p>不合法</p>
+<p>认清并加以重视（漏洞）</p>
+<p>限制并获得双赢（”白帽”）</p>
+<p>加强法律建设</p>
+</blockquote>
+</li>
+<li><p>厂商发布漏洞信息的标准过程是怎样的?</p>
+<blockquote>
+<p>识别、评估、选择补救措施、发布</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h2><ul>
+<li><p>程序运行时的内存布局是怎样的?</p>
+<blockquote>
+<p>栈堆代数，中心扩散，上低下高</p>
+</blockquote>
+</li>
+<li><p>在程序运行时，用来动态申请分配数据和对象的内存区域形式称为什么?</p>
+<blockquote>
+<p>堆</p>
+</blockquote>
+</li>
+<li><p><strong>什么是缓冲区溢出漏洞?</strong></p>
+<blockquote>
+<p>向缓冲区写数据时未作边界检查，导致超过预先分配的边界，覆盖合法数据</p>
+<p>黑客利用缓冲区溢出攻击，获取系统权限</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="第五章"><a href="#第五章" class="headerlink" title="第五章"></a>第五章</h2><ul>
+<li><p>什么是软件的生命周期?软件生命周期通常包括哪几个阶段?</p>
+<blockquote>
+<p>定义、开发、维护</p>
+<p>定义：问题定义、可行性分析、需求分析</p>
+<p>开发：设计、编码、测试</p>
+<p>维护</p>
+</blockquote>
+</li>
+<li><p>什么是软件过程？什么是软件开发（过程）模型？为什么从20世纪90年代以后，人们更多使用“软件过程”来替代传统的“软件开发模型”？（难背）</p>
+<blockquote>
+<p>获得高质量软件完成任务的框架，规定工作步骤</p>
+<p>软件生命周期开发、运行、维护的全部工作任务的框架</p>
+<p>更高效、更灵活、更高精度、减少质量问题、团队</p>
+</blockquote>
+</li>
+<li><p>有哪些典型的软件开发模型？这些软件开发模型有什么区别与联系？</p>
+<blockquote>
+<p>螺旋、原型、瀑布、敏捷、增量、喷泉</p>
+<p>迭代次数和时机、开发时间</p>
+<p>影响开发过程与时机</p>
+</blockquote>
+</li>
+<li><p><strong>SD3+C原则是SDL模型实施的基本原则，试简述其内容。</strong></p>
+<blockquote>
+<p>安全设计、安全配置、安全部署、沟通</p>
+</blockquote>
+</li>
+<li><p>微软的SDL模型与传统的瀑布模型的关系是怎样的?</p>
+<blockquote>
+<p>发展而来，增加两个活动（安全和业务）</p>
+</blockquote>
+</li>
+<li><p><strong>什么是敏捷SDL？敏捷SDL和经典SDL的主要区别是什么？</strong>（2024、2025）</p>
+<blockquote>
+<p>无阶段的迭代开发模型</p>
+<p>并不是每个发布版本都要达到所有要求</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="第六章"><a href="#第六章" class="headerlink" title="第六章"></a>第六章</h2><ul>
+<li><p>为什么要进行需求分析?通常对软件系统有哪些需求?</p>
+<blockquote>
+<p>了解用户需求，需求分析是前提</p>
+<p>功能、性能、质量属性、接口、约束</p>
+</blockquote>
+</li>
+<li><p>为什么要进行安全需求分析?通常对软件系统有哪些安全需求?</p>
+<blockquote>
+<p>如何提高安全质量，减少安全漏洞</p>
+<p>外部：法规、合规性、对策总结</p>
+<p>内部：组织内部标准、指南，功能相关的安全需求</p>
+</blockquote>
+</li>
+<li><p>软件安全需求分析的主要工作是什么?它和软件需求分析有什么区别与联系?</p>
+<blockquote>
+<p>在需求分析阶段，确定环境，了解安全需求内容，通过安全需求获取过程，分析安全需求</p>
+<p>安全需求是客观的、安全需求从系统角度分析、按需采纳</p>
+<p>是衍生、以功能性需求分析为基础、帮助从安全角度确定系统需求</p>
+</blockquote>
+</li>
+<li><p>为什么说软件安全需求更多地来源于遵从性需求?</p>
+<blockquote>
+<p>用户难以提出，来自内外部安全政策和标准的遵从</p>
+</blockquote>
+</li>
+<li><p>软件安全需求的获取方法有哪些?</p>
+<blockquote>
+<p>头脑风暴、问卷与访谈、策略分解、数据分类、主客体关系矩阵</p>
+</blockquote>
+</li>
+<li><p><strong>软件安全需求的获取方法中的策略分解是指什么?</strong>（2024）</p>
+<blockquote>
+<p>将需遵守的内外部政策，分解成详细的安全需求</p>
+</blockquote>
+</li>
+<li><p>软件安全需求的获取方法中的数据分类是指什么?</p>
+<blockquote>
+<p>按数据生命周期对数据分阶段划分、按数据重要性对保护级别划分</p>
+</blockquote>
+</li>
+<li><p>软件安全需求的获取方法中的主&#x2F;客体关系矩阵是指什么?</p>
+<blockquote>
+<p>刻画基于使用用例的主客体操作关系，角色（列）与组件（行）的二维表示，与矩阵所允许的对应动作相违背的判定为威胁</p>
+</blockquote>
+</li>
+<li><p>针对信息系统中的数据生命周期，通常应当考虑的安全需求有哪些?</p>
+<blockquote>
+<p>创建、处理、传输、存储、介质、归档</p>
+<p>数据创建、访问和权限</p>
+<p>数据泄漏保护</p>
+<p>传输数据安全协议</p>
+<p>数据存储格式，环境威胁</p>
+<p>介质可靠性</p>
+<p>归档数据处理政策</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="第七章"><a href="#第七章" class="headerlink" title="第七章"></a>第七章</h2><ul>
+<li><p>软件设计阶段的主要工作是什么?</p>
+<blockquote>
+<p>架构、界面接口、模块构件、数据模型、算法、部署</p>
+</blockquote>
+</li>
+<li><p>软件安全设计阶段的主要工作是什么?</p>
+<blockquote>
+<p>软件架构安全性设计、软件架构安全性分析、软件安全功能设计</p>
+</blockquote>
+</li>
+<li><p>为什么要进行软件架构设计?软件架构设计的主要工作是什么?软件架构安全性设计的主要工作是什么?</p>
+<blockquote>
+<p>开发高质量软件</p>
+<p>理清需求、设计业务逻辑和接口……扯第一问、迭代架构设计</p>
+<p>进行系统描述，确定安全级别、设计安全功能、解决易用性等问题</p>
+</blockquote>
+</li>
+<li><p>为什么要进行软件架构安全性分析?软件架构安全性分析的基本过程是什么?</p>
+<blockquote>
+<p>编码前，要素验证，提供处理漏洞的机会</p>
+<p>架构建模 –&gt; 检查安全需求  –&gt; 修改架构设计</p>
+</blockquote>
+</li>
+<li><p>软件受攻击面是指什么?举例说明软件设计时可以采取哪些策略来降低受攻击面。</p>
+<blockquote>
+<p>用户或攻击者能访问到的所有功能和代码的总和（代码、接口、服务、协议）</p>
+<p>重要性低功能取消、重要性中非默认开启、重要性高增加安全措施、重用安全的现有库。</p>
+<p>IOS不支持java、flash</p>
+</blockquote>
+</li>
+<li><p><strong>什么是最小授权原则?试举例说明软件设计时哪些措施是采用了最小授权原则。</strong>（2024）</p>
+<blockquote>
+<p>系统授予实体完成任务的最小权限，持续时间尽可能短。使不需要的特权使用可能性降到最低，保证安全</p>
+<p>权限细粒度划分，高内聚低耦合模块化编程。</p>
+</blockquote>
+</li>
+<li><p>什么是权限分离原则?试举例说明软件设计时哪些措施是采用了权限分离原则。</p>
+<blockquote>
+<p>将软件功能设计为需要两个或更多条件下才能实现。防止出问题时，整个软件面临风险</p>
+<p>清晰划分模块，分散风险。可快速定位问题、单模块测试、重用和替换模块</p>
+<p>不允许程序员检查自己编写的代码</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="第八章"><a href="#第八章" class="headerlink" title="第八章"></a>第八章</h2><ul>
+<li><p>软件安全编码阶段的主要工作有哪些?</p>
+<blockquote>
+<p>选择安全编程语言、版本管理、代码检测、安全编译</p>
+</blockquote>
+</li>
+<li><p>什么是类型安全语言?哪些程序开发语言是类型安全的?</p>
+<blockquote>
+<p>提供类型安全保障机制的语言，操作仅作用于适当类型。C#、java</p>
+</blockquote>
+</li>
+<li><p><strong>安全编译是指在代码编译阶段采取的哪些安全措施?</strong>（2024）</p>
+<blockquote>
+<p>集成编译环境、安全环境、真实模拟应用环境、多样化编译技术</p>
+</blockquote>
+</li>
+<li><p>试列举几条安全编码原则,并举例说明这些原则的重要意义。</p>
+<blockquote>
+<p>验证输入、留意编译器警告、安全策略的架构与设计、保持简单性</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="第十二章"><a href="#第十二章" class="headerlink" title="第十二章"></a>第十二章</h2><ul>
+<li><p>试解释以下与恶意代码程序相关的计算机系统概念，以及各概念之间的联系与区别:进程、线程、动态链接库、 服务、注册表。</p>
+<blockquote>
+<p>进程是OS对正在运行的程序的抽象，动态，有生命周期，反应程序在数据集上的全部动态过程</p>
+<p>线程是OS分配处理器资源的基本单位，讲讲进程与线程的关系</p>
+<p>动态链接DLL是共享函数库的可执行文件，通过其他运行程序加载到内存中，可被多个进程加载</p>
+<p>服务是OS在后台完成系统任务的程序，有各种权限</p>
+<p>注册表是OS中使用的中央分层数据库，存储用户、程序、硬件配置必须的信息</p>
+</blockquote>
+</li>
+<li><p>从危害、传播、激活和隐藏4个主要方面分析计算机病毒、蠕虫、木马、后门、Rootkit及勒索软件这几类恶 意代码类型的工作原理。</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">病毒</th>
+<th align="center">蠕虫</th>
+<th align="center">木马</th>
+<th align="center">后门</th>
+<th align="center">Rootkit</th>
+<th align="center">勒索软件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>危害</strong></td>
+<td align="center">破坏机密性、完整性、可用性</td>
+<td align="center">网络拥塞、系统性能、安全隐患、反复性、破坏性</td>
+<td align="center">非法进入系统、控制系统、破坏系统</td>
+<td align="center">访问控制系统的通道，无直接攻击行为</td>
+<td align="center">获得访问权限，隐藏在计算机中</td>
+<td align="center">劫持用户资源、勒索钱财</td>
+</tr>
+<tr>
+<td align="center"><strong>传播</strong></td>
+<td align="center">存储设备、网络</td>
+<td align="center">自我复制、网络</td>
+<td align="center">自我传播、诱骗</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">邮件、漏洞、网络、存储设备</td>
+</tr>
+<tr>
+<td align="center"><strong>激活</strong></td>
+<td align="center">特定条件</td>
+<td align="center">自动化、系统漏洞</td>
+<td align="center">用户操作</td>
+<td align="center">开发者&#x2F;攻击者设置</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><strong>隐藏</strong></td>
+<td align="center">寄生程序或文档</td>
+<td align="center">实体隐藏模块</td>
+<td align="center">难以确定</td>
+<td align="center"></td>
+<td align="center">修改OS软件</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+</li>
+<li><p>病毒程序与蠕虫程序的主要区别有哪些?</p>
+<blockquote>
+<p>病毒人为干预、蠕虫不需要；病毒感染文件系统，蠕虫影响系统与网络性能</p>
+</blockquote>
+</li>
+<li><p><strong>什么是Rootkit?它与木马和后门有什么区别与联系?</strong>（2024）</p>
+<blockquote>
+<p>一类木马后门工具，修改操作系统软件，使攻击者获得权限并隐藏在计算机中</p>
+<p>属于木马范畴，替换操作系统软件，伪装与隐藏机制</p>
+<p>作为后门行使职责，口令、远程shell绕过检查机制。</p>
+<p>Rootkit强调隐藏伪造欺骗，木马强调窃取与侵入。</p>
+</blockquote>
+</li>
+<li><p>什么是勒索软件?为什么勒索软件成为近年来数量增长最快的恶意代码类型?（2025）</p>
+<blockquote>
+<p>劫持资产，勒索钱财的恶意软件</p>
+<p>加密有效解密成本高、电子货币支付，变现快，追踪难、勒索软件即服务的出现，降低攻击门槛</p>
+</blockquote>
+</li>
+<li><p>恶意代码防范的基本措施包括哪些?</p>
+<blockquote>
+<p>增强法律意识、健全管理制度、软件可信验证</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="第十三章"><a href="#第十三章" class="headerlink" title="第十三章"></a>第十三章</h2><ul>
+<li><p>试从软件的权益处置角度，谈谈对商业软件、免费软件、共享软件（或试用软件）、闭源软件、自由软件及开源软件概念的理解。</p>
+<blockquote>
+<p>商业软件通过销售许可证或订阅方式获利，核心目的是盈利</p>
+<p>免费软件是无需支付可使用的软件，源代码可能不公开，提供基础功能，高级功能可能需付费</p>
+<p>共享软件提供试用版或部分功能免费，源代码通常不公开，通过共享试用吸引用户购买</p>
+<p>闭源软件源代码私有，用户只能使用，不能修改与分发</p>
+<p>自由软件用户可以自由使用、分发、修改，重视自由和开放源代码，通常遵循GUN GPL协议</p>
+<p>开源软件允许用户修改分发，但不一定要求使用自由，主要强调开放源代码</p>
+</blockquote>
+</li>
+<li><p>自由软件赋予软件使用者哪些“自由”？</p>
+<blockquote>
+<p>4种自由：</p>
+<p>自由运行、自由研究、自由发布、自由改进</p>
+</blockquote>
+</li>
+<li><p>试简述开源软件与自由软件的联系与区别。（2025）</p>
+<blockquote>
+<p>开源软件由自由软件发展而来，都具理想主义色彩，追求更多人使用、学习、改进</p>
+<p>概念不同：自由软件比开源软件更严格，开放源代码。遵循GPL和BSD许可证的开源软件才符合自由软件</p>
+<p>价值观不同：自由软件将自由作为道德标准，开源软件更注重软件发展</p>
+</blockquote>
+</li>
+<li><p><strong>所开发的软件中使用了带 GPL 许可证的开源软件，那么这个软件是不是就要开源？</strong>（2024）</p>
+<blockquote>
+<p>是的。GNU通用公共许可证，在一个软件中使用了GPL许可证的产品，则该软件也要使用GPL许可证。“传染性”</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="第十四章"><a href="#第十四章" class="headerlink" title="第十四章"></a>第十四章</h2><ul>
+<li><p>根据我国法律，软件著作权人有哪些权利?在日常学习和生活中，有哪些违反软件著作权的行为?</p>
+<blockquote>
+<p>信息网络传播权、修改权、发表权、署名权、复制权、出租权、翻译权、发行权等</p>
+</blockquote>
+</li>
+<li><p><strong>试述软件版权的概念。针对软件的版权，有哪些侵权行为?有哪些保护措施?</strong>（2024）</p>
+<blockquote>
+<p>软件知识产权的一部分，指软件著作权</p>
+<p>软件盗版、逆向工程、信息泄漏</p>
+<p>硬件：发行介质保护、软件狗、可信平台模块TPM</p>
+<p>软件：注册验证、水印、代码混淆、软件加壳</p>
+</blockquote>
+</li>
+<li><p>软件版权保护的目标有哪些?它与软件保护的目标有什么联系与区别?</p>
+<blockquote>
+<p>防止软件盗版、逆向工程、信息泄漏</p>
+<p>是子集，谈交集外区别；措施同样可用于软件保护</p>
+</blockquote>
+</li>
+</ul>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%A4%8D%E4%B9%A0/">复习</a><a class="post-meta__tags" href="/tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/">软件安全</a></div><div class="post-share"><div class="social-share" data-image="/img/blog-cover-1770373154786.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/02/06/2024%E7%BB%9F%E8%AE%A1%E6%A8%A1%E5%9E%8B%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/" title="2025南软统计模型期末复习"><img class="cover" src="/img/blog-cover-1770376339122.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">2025南软统计模型期末复习</div></div><div class="info-2"><div class="info-item-1">本文为2024统计模型期末试卷回忆版，既作为课程复习笔记，也希望通过系统梳理，加深对算法思想与应用场景的认识。  其中，简答题8道＋计算题5道 2024版简答题新增了部分我认为会考的内容作为复习，所以有12道，实际只有8道 2025统计模型计算题新增了 Γ函数 作为考点，其他的题目大同小异。 回忆版仅供参考。  简答题 简述 EM 算法的基本思想、主要步骤，并说明其优缺点与应用场景。 何为聚类？简述 K-means 聚类算法的基本流程及其优缺点。 什么是层次聚类？写出两种常用的簇间距离计算方法及其变种。 简述...</div></div></div></a><a class="pagination-related" href="/2026/01/17/%E5%9F%BA%E4%BA%8E-LLMREI-%E7%9A%84%E9%9C%80%E6%B1%82%E8%8E%B7%E5%8F%96%E5%AE%9E%E8%B7%B5/" title="基于 LLMREI 的需求获取实践"><img class="cover" src="/img/blog-cover-002.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">基于 LLMREI 的需求获取实践</div></div><div class="info-2"><div class="info-item-1">基于 LLMREI 的需求获取实践报告1 引言​		需求获取是需求工程中的关键环节，直接影响软件系统的质量与成功率。传统需求获取方式（如人工面谈）虽然能够获得较为丰富的信息，但存在成本高、效率低、易受主观因素影响等问题。近年来，大语言模型（Large Language Models, LLMs）在自然语言理解与生成方面展现出强大能力，为需求获取过程的智能化与自动化提供了新的可能。​		本文基于 RE 2025 会议论文 《LLMREI: Automating Requirements Elicitation ...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/02/10/%E9%AB%98%E7%BA%A7%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/" title="2025南软高级软件设计期末复习"><img class="cover" src="/img/blog-cover-1770733677174.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-10</div><div class="info-item-2">2025南软高级软件设计期末复习</div></div><div class="info-2"><div class="info-item-1">高级软件设计简答题汇总 设计模式和类库有什么不同  定义与目的  解决问题，重复使用的框架，经过验证的最佳实践，解决设计问题 封装特定功能的类和接口的集合，提供具体实现   抽象级别  更高级别抽象，方法论，组织代码和模块 具体实现，提供可直接使用的代码   通用性和使用范围  通用性更高，适合多种语言和项目，举例 类库与特定编程语言绑定，Java Spring框架   重用程度  重用思想和方法，而非代码 重用代码    工厂设计模式的三个OO原则  单一职责原则  一个类应当只有一个引起变化的原因。创建对...</div></div></div></a><a class="pagination-related" href="/2026/02/06/2024%E7%BB%9F%E8%AE%A1%E6%A8%A1%E5%9E%8B%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/" title="2025南软统计模型期末复习"><img class="cover" src="/img/blog-cover-1770376339122.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-06</div><div class="info-item-2">2025南软统计模型期末复习</div></div><div class="info-2"><div class="info-item-1">本文为2024统计模型期末试卷回忆版，既作为课程复习笔记，也希望通过系统梳理，加深对算法思想与应用场景的认识。  其中，简答题8道＋计算题5道 2024版简答题新增了部分我认为会考的内容作为复习，所以有12道，实际只有8道 2025统计模型计算题新增了 Γ函数 作为考点，其他的题目大同小异。 回忆版仅供参考。  简答题 简述 EM 算法的基本思想、主要步骤，并说明其优缺点与应用场景。 何为聚类？简述 K-means 聚类算法的基本流程及其优缺点。 什么是层次聚类？写出两种常用的簇间距离计算方法及其变种。 简述...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/my-avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Ace</div><div class="author-info-description">在代码、系统与想法之间留下笔记</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/calculator-jsj" target="_blank" title="GitHub"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="https://qq.com" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #000000;"></i></a><a class="social-icon" href="https://weixin.com" target="_blank" title="WeChat"><i class="fab fa-weixin" style="color: #000000;"></i></a><a class="social-icon" href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram" style="color: #000000;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到 Ace's Blog。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0"><span class="toc-number">1.</span> <span class="toc-text">第一章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0"><span class="toc-number">2.</span> <span class="toc-text">第二章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0"><span class="toc-number">3.</span> <span class="toc-text">第三章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0"><span class="toc-number">4.</span> <span class="toc-text">第五章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0"><span class="toc-number">5.</span> <span class="toc-text">第六章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E7%AB%A0"><span class="toc-number">6.</span> <span class="toc-text">第七章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0"><span class="toc-number">7.</span> <span class="toc-text">第八章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0"><span class="toc-number">8.</span> <span class="toc-text">第十二章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0"><span class="toc-number">9.</span> <span class="toc-text">第十三章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%8D%81%E5%9B%9B%E7%AB%A0"><span class="toc-number">10.</span> <span class="toc-text">第十四章</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/04/28/%E4%B8%87%E5%AD%97%E8%AF%A6%E8%A7%A3Kafka/" title="万字详解Kafka"><img src="/img/blog-cover-003.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="万字详解Kafka"/></a><div class="content"><a class="title" href="/2026/04/28/%E4%B8%87%E5%AD%97%E8%AF%A6%E8%A7%A3Kafka/" title="万字详解Kafka">万字详解Kafka</a><time datetime="2026-04-28T09:01:19.000Z" title="发表于 2026-04-28 17:01:19">2026-04-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/04/19/RagentHub%E9%97%AE%E7%AD%94/" title="RagentHub问答"><img src="/img/blog-cover-RagentHub.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RagentHub问答"/></a><div class="content"><a class="title" href="/2026/04/19/RagentHub%E9%97%AE%E7%AD%94/" title="RagentHub问答">RagentHub问答</a><time datetime="2026-04-19T04:32:06.000Z" title="发表于 2026-04-19 12:32:06">2026-04-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/04/19/%E7%9F%AD%E9%93%BE%E6%8E%A5%E9%A1%B9%E7%9B%AE%E7%84%9A%E8%AF%80/" title="Saas短链接设计与实现"><img src="/img/blog-cover-shortLink.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Saas短链接设计与实现"/></a><div class="content"><a class="title" href="/2026/04/19/%E7%9F%AD%E9%93%BE%E6%8E%A5%E9%A1%B9%E7%9B%AE%E7%84%9A%E8%AF%80/" title="Saas短链接设计与实现">Saas短链接设计与实现</a><time datetime="2026-04-19T04:08:49.000Z" title="发表于 2026-04-19 12:08:49">2026-04-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%85%AB%E8%82%A1/" title="计算机网络八股"><img src="/img/blog-cover-001.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机网络八股"/></a><div class="content"><a class="title" href="/2026/02/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%85%AB%E8%82%A1/" title="计算机网络八股">计算机网络八股</a><time datetime="2026-02-10T13:04:15.000Z" title="发表于 2026-02-10 21:04:15">2026-02-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/10/%E9%AB%98%E7%BA%A7%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/" title="2025南软高级软件设计期末复习"><img src="/img/blog-cover-1770733677174.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2025南软高级软件设计期末复习"/></a><div class="content"><a class="title" href="/2026/02/10/%E9%AB%98%E7%BA%A7%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/" title="2025南软高级软件设计期末复习">2025南软高级软件设计期末复习</a><time datetime="2026-02-10T10:05:15.000Z" title="发表于 2026-02-10 18:05:15">2026-02-10</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/blog-cover-1770373154786.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By Ace</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
